@@ -93,10 +93,12 @@ def connect_to_kafka(spark_conn):
             .option('kafka.bootstrap.servers', 'localhost:9092') \
             .option('subscribe', 'bitcoin_data') \
             .option('startingOffsets', 'earliest') \
+            .option("failOnDataLoss", "false") \
             .load()
         logging.info("kafka dataframe created successfully")
     except Exception as e:
         logging.warning(f"kafka dataframe could not be created because: {e}")
+        raise
 
     return spark_df
 
@@ -159,6 +161,7 @@ if __name__ == "__main__":
                                .option('checkpointLocation', '/tmp/checkpoint')
                                .option('keyspace', 'spark_streams')
                                .option('table', 'bitcoin_data')
+                               .option("failOnDataLoss", "false")
                                .start())
 
             try:

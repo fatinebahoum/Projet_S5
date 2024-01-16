@@ -71,6 +71,7 @@ def stream_data():
                 producer.send('bitcoin_data', json.dumps(data).encode('utf-8'))
                 #print("Bitcoin Information:")
                 #print(json.dumps(data, indent=3))
+                time.sleep(5)
         except Exception as e:
             logging.error(f'An error occured: {e}')
             continue
