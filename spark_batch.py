@@ -4,6 +4,7 @@ from pyspark.sql.window import Window
 from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 import logging
+import numpy as np
 
 
 def load_data_from_cassandra(spark, keyspace, table):
@@ -14,7 +15,7 @@ def load_data_from_cassandra(spark, keyspace, table):
     return df
 
 def predict_next_day(data, model, scaler, time_step=15):
-    last_days = last_days.reshape(1, time_step, 1)
+    last_days = data.reshape(1, time_step, 1)
     prediction = model.predict(last_days)
     prediction = scaler.inverse_transform(prediction)
     return prediction[0][0]
@@ -48,29 +49,40 @@ def batch_processing():
         if not historical_data.isEmpty():
 
             # Trier les données par last_updated
-            historical_data = historical_data.sort(col("last_updated"))
+            historical_data = historical_data.sort(col("date"))
 
             # Utiliser une fenêtre pour obtenir les 15 dernières lignes
-            window_spec = Window.orderBy(col("last_updated").desc())
+            window_spec = Window.orderBy(col("date").desc())
             last_15_rows = historical_data.withColumn("row_number", row_number().over(window_spec)).filter(col("row_number") <= 15)
+
 
             # Sélectionner uniquement la colonne "price"
             last_15_prices = last_15_rows.select("price").collect()
+
+            last_15_prices.reverse()
 
             print(last_15_prices)
 
             # Convertir les données en un tableau NumPy
             prices_array = [float(row.price) for row in last_15_prices]
             print(prices_array)
-            """
+            
             # Charger le model LSTM
             model_path = './complete_model.h5'
             if(model_path):
                 loaded_model = load_model(model_path)
-                # Charger le scaler utilisé lors de l'entraînement du modèle
-                scaler = MinMaxScaler()
-                print("loaded_model succesfully")
-            else: print("model path error")"""
+
+                #Charger le scaler utilisé lors de l'entraînement du modèle
+                scaler = MinMaxScaler(feature_range=(0,1))
+                prices_array1 = scaler.fit_transform(np.array(prices_array).reshape(-1, 1))
+                print(prices_array1)
+                # Faire la prédiction pour le prochain jour
+                next_day_prediction = predict_next_day(prices_array1, loaded_model, scaler)
+
+                print(f"Predicted Close Price for the Next Day: {next_day_prediction}")
+                
+                
+            else: print("model path error")
         else:
             print("historical data error")
     else: print("spark connection error")

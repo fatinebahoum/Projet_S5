@@ -4,8 +4,8 @@ from airflow.operators.python import PythonOperator
 import uuid
 
 default_args = {
-    'owner': 'airscholar',
-    'start_date': datetime(2021, 1, 13, 10, 00)
+    'owner': 'fatine',
+    'start_date': datetime(2021, 12, 20, 10, 00)
 }
 
 def get_data(api_key):
@@ -34,10 +34,9 @@ def get_data(api_key):
 
 def format_data(bitcoin_data):
     data = {}
-    data['id'] = str(uuid.uuid4())
     data['name'] = bitcoin_data['name']
     data['price'] = bitcoin_data["quote"]["USD"]["price"]
-    data['last_updated'] = bitcoin_data['last_updated']
+    data['date'] = bitcoin_data['last_updated']
     
     return data
 
@@ -52,10 +51,10 @@ def create_keyspace(session):
 def create_table(session):
     session.execute("""
         CREATE TABLE IF NOT EXISTS spark_streams.historical_data (
-            id UUID PRIMARY KEY,
             name TEXT,
             price TEXT,
-            last_updated TEXT
+            date TEXT,
+            PRIMARY KEY (name, date)
         );
     """)
 
@@ -88,9 +87,9 @@ def fetch_and_save_data():
                # Insertion des données dans Cassandra
                 try:
                     session.execute("""
-                        INSERT INTO spark_streams.historical_data(id, name, price, last_updated)
-                        VALUES (%s, %s, %s, %s)
-                    """, (uuid.UUID(data['id']), data['name'], data['price'], data['last_updated']))
+                        INSERT INTO spark_streams.historical_data(name, price, date)
+                        VALUES (%s, %s, %s)
+                    """, (data['name'], data['price'], data['date']))
 
                     logging.info(f"Inserted historical data into Cassandra: {json.dumps(data)}")
 
@@ -102,13 +101,13 @@ def fetch_and_save_data():
             logging.error(f'An error occured: {e}')
             continue
 
-with DAG('fetch_and_save_historical_data',
-          default_args= default_args,
+dag = DAG('fetch_and_save_historical_data',
+          default_args=default_args,
           schedule_interval=timedelta(minutes=1),
-          catchup=False) as dag:
+          catchup=False)
 
-    
-    fetch_and_save_task = PythonOperator(
-        task_id='fetch_and_save_hitstorical_data',
-        python_callable= fetch_and_save_data
-    )
+fetch_and_save_task = PythonOperator(
+    task_id='fetch_and_save_hitstorical_data',
+    python_callable=fetch_and_save_data,
+    dag=dag  # Specify the DAG
+)

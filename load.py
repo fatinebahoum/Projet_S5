@@ -9,7 +9,7 @@ session = cluster.connect('spark_streams')  # Replace 'your_cassandra_host' with
 csv_file_path = './historical_data.csv'
 
 # Cassandra table columns
-columns = ['id', 'name', 'price', 'last_updated']
+columns = ['name', 'price', 'date']
 
 # Prepare INSERT statement
 insert_query = f"INSERT INTO historical_data ({', '.join(columns)}) VALUES ({', '.join(['%s'] * len(columns))})"

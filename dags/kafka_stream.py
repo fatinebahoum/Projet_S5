@@ -4,7 +4,7 @@ from airflow.operators.python import PythonOperator
 import uuid
 
 default_args = {
-    'owner': 'airscholar',
+    'owner': 'fatine',
     'start_date': datetime(2021, 1, 13, 10, 00)
 }
 
