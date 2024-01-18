@@ -55,7 +55,7 @@ def stream_data():
     import time
     import logging
 
-    api_key = '9a8ce41a-6b90-4dd1-80f2-5434ee167df5'  # Replace with your actual API key
+    api_key = 'a248bb66-1db0-478a-8fea-5bc4e6eff197'  # Replace with your actual API key
     
     
     producer = KafkaProducer(bootstrap_servers=['broker:29092'], max_block_ms=5000)
