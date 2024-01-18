@@ -38,10 +38,37 @@ def create_spark_connection():
         logging.error(f"Couldn't create the spark session due to exception {e}")
 
     return s_conn
+def create_keyspace(session):
+    session.execute("""
+        CREATE KEYSPACE IF NOT EXISTS spark_streams
+        WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'};
+    """)
+
+    print("Keyspace created successfully!")
+
+def create_table(session):
+    session.execute("""
+        CREATE TABLE IF NOT EXISTS spark_streams.predictions (
+            name TEXT,
+            price TEXT,
+            PRIMARY KEY (name, price)
+        );
+    """)
+
+    print("Table created successfully!")
+
 
 def batch_processing():
+    from cassandra.cluster import Cluster
     # create spark connection
     spark_conn = create_spark_connection()
+
+    # Connexion à Cassandra
+    cluster = Cluster(['localhost'])
+    session = cluster.connect()
+
+    create_keyspace(session)
+    create_table(session)
 
     if(spark_conn):
         # Charger les données historiques depuis Cassandra
@@ -78,7 +105,20 @@ def batch_processing():
                 print(prices_array1)
                 # Faire la prédiction pour le prochain jour
                 next_day_prediction = predict_next_day(prices_array1, loaded_model, scaler)
+                
+                next_day_prediction = str(next_day_prediction)
+                # Insertion des données dans Cassandra
+                try:
+                    session.execute("""
+                        INSERT INTO spark_streams.predictions(name, price)
+                        VALUES (%s, %s)
+                    """, ('Bitcoin', next_day_prediction))
 
+                    logging.info(f"Inserted predicted value into Cassandra")
+
+                except Exception as cassandra_error:
+                    logging.error(f'Error inserting predicted value into Cassandra: {cassandra_error}')
+                
                 print(f"Predicted Close Price for the Next Day: {next_day_prediction}")
                 
                 
