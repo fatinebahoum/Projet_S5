@@ -1,0 +1,33 @@
+[2024-01-18T23:40:23.234+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bitcoin_data_batch_processing.submit_spark_job manual__2024-01-18T23:40:20.836538+00:00 [queued]>
+[2024-01-18T23:40:23.247+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bitcoin_data_batch_processing.submit_spark_job manual__2024-01-18T23:40:20.836538+00:00 [queued]>
+[2024-01-18T23:40:23.247+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-01-18T23:40:23.266+0000] {taskinstance.py:1382} INFO - Executing <Task(SparkSubmitOperator): submit_spark_job> on 2024-01-18 23:40:20.836538+00:00
+[2024-01-18T23:40:23.270+0000] {standard_task_runner.py:57} INFO - Started process 5436 to run task
+[2024-01-18T23:40:23.275+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'bitcoin_data_batch_processing', 'submit_spark_job', 'manual__2024-01-18T23:40:20.836538+00:00', '--job-id', '38', '--raw', '--subdir', 'DAGS_FOLDER/BatchLayer_dag.py', '--cfg-path', '/tmp/tmp6wd43nwg']
+[2024-01-18T23:40:23.277+0000] {standard_task_runner.py:85} INFO - Job 38: Subtask submit_spark_job
+[2024-01-18T23:40:23.357+0000] {task_command.py:415} INFO - Running <TaskInstance: bitcoin_data_batch_processing.submit_spark_job manual__2024-01-18T23:40:20.836538+00:00 [running]> on host 36e53310e6a3
+[2024-01-18T23:40:23.467+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='bitcoin_data_batch_processing' AIRFLOW_CTX_TASK_ID='submit_spark_job' AIRFLOW_CTX_EXECUTION_DATE='2024-01-18T23:40:20.836538+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-18T23:40:20.836538+00:00'
+[2024-01-18T23:40:23.480+0000] {base.py:73} INFO - Using connection ID 'spark_default' for task execution.
+[2024-01-18T23:40:23.481+0000] {spark_submit.py:401} INFO - Spark-Submit cmd: spark-submit --master 172.29.0.5:7077 --name arrow-spark --queue root.default --deploy-mode client /opt/***/dags/spark_batch.py
+[2024-01-18T23:40:23.638+0000] {spark_submit.py:571} INFO - /home/***/.local/lib/python3.9/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2024-01-18T23:40:25.445+0000] {spark_submit.py:571} INFO - Exception in thread "main" org.apache.spark.SparkException: Master must either be yarn or start with spark, mesos, k8s, or local
+[2024-01-18T23:40:25.446+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.error(SparkSubmit.scala:1047)
+[2024-01-18T23:40:25.446+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.prepareSubmitEnvironment(SparkSubmit.scala:256)
+[2024-01-18T23:40:25.446+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:964)
+[2024-01-18T23:40:25.446+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:194)
+[2024-01-18T23:40:25.446+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:217)
+[2024-01-18T23:40:25.446+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:91)
+[2024-01-18T23:40:25.446+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1120)
+[2024-01-18T23:40:25.446+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1129)
+[2024-01-18T23:40:25.447+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2024-01-18T23:40:25.467+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 174, in execute
+    self._hook.submit(self._application)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 502, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master 172.29.0.5:7077 --name arrow-spark --queue root.default --deploy-mode client /opt/***/dags/spark_batch.py. Error code is: 1.
+[2024-01-18T23:40:25.472+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=bitcoin_data_batch_processing, task_id=submit_spark_job, execution_date=20240118T234020, start_date=20240118T234023, end_date=20240118T234025
+[2024-01-18T23:40:25.486+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 38 for task submit_spark_job (Cannot execute: spark-submit --master 172.29.0.5:7077 --name arrow-spark --queue root.default --deploy-mode client /opt/***/dags/spark_batch.py. Error code is: 1.; 5436)
+[2024-01-18T23:40:25.497+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-01-18T23:40:25.520+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

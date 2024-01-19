@@ -1,0 +1,25 @@
+[2024-01-18T23:52:36.335+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bitcoin_data_batch_processing.submit_spark_job manual__2024-01-18T23:52:33.271675+00:00 [queued]>
+[2024-01-18T23:52:36.343+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bitcoin_data_batch_processing.submit_spark_job manual__2024-01-18T23:52:33.271675+00:00 [queued]>
+[2024-01-18T23:52:36.343+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-01-18T23:52:36.358+0000] {taskinstance.py:1382} INFO - Executing <Task(SparkSubmitOperator): submit_spark_job> on 2024-01-18 23:52:33.271675+00:00
+[2024-01-18T23:52:36.361+0000] {standard_task_runner.py:57} INFO - Started process 5901 to run task
+[2024-01-18T23:52:36.373+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'bitcoin_data_batch_processing', 'submit_spark_job', 'manual__2024-01-18T23:52:33.271675+00:00', '--job-id', '41', '--raw', '--subdir', 'DAGS_FOLDER/BatchLayer_dag.py', '--cfg-path', '/tmp/tmpjrgbwa5o']
+[2024-01-18T23:52:36.377+0000] {standard_task_runner.py:85} INFO - Job 41: Subtask submit_spark_job
+[2024-01-18T23:52:36.483+0000] {task_command.py:415} INFO - Running <TaskInstance: bitcoin_data_batch_processing.submit_spark_job manual__2024-01-18T23:52:33.271675+00:00 [running]> on host 36e53310e6a3
+[2024-01-18T23:52:36.608+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='bitcoin_data_batch_processing' AIRFLOW_CTX_TASK_ID='submit_spark_job' AIRFLOW_CTX_EXECUTION_DATE='2024-01-18T23:52:33.271675+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-18T23:52:33.271675+00:00'
+[2024-01-18T23:52:36.619+0000] {base.py:73} INFO - Using connection ID 'spark_default' for task execution.
+[2024-01-18T23:52:36.620+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 174, in execute
+    self._hook.submit(self._application)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 474, in submit
+    spark_submit_cmd = self._build_spark_submit_command(application)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 401, in _build_spark_submit_command
+    self.log.info("Spark-Submit cmd: %s", self._mask_cmd(connection_cmd))
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 305, in _mask_cmd
+    " ".join(connection_cmd),
+TypeError: sequence item 4: expected str instance, list found
+[2024-01-18T23:52:36.631+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=bitcoin_data_batch_processing, task_id=submit_spark_job, execution_date=20240118T235233, start_date=20240118T235236, end_date=20240118T235236
+[2024-01-18T23:52:36.648+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 41 for task submit_spark_job (sequence item 4: expected str instance, list found; 5901)
+[2024-01-18T23:52:36.664+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-01-18T23:52:36.684+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

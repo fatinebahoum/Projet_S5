@@ -1,0 +1,175 @@
+[2024-01-18T23:55:22.090+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bitcoin_data_batch_processing.submit_spark_job manual__2024-01-18T23:55:19.492642+00:00 [queued]>
+[2024-01-18T23:55:22.099+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bitcoin_data_batch_processing.submit_spark_job manual__2024-01-18T23:55:19.492642+00:00 [queued]>
+[2024-01-18T23:55:22.099+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-01-18T23:55:22.117+0000] {taskinstance.py:1382} INFO - Executing <Task(SparkSubmitOperator): submit_spark_job> on 2024-01-18 23:55:19.492642+00:00
+[2024-01-18T23:55:22.120+0000] {standard_task_runner.py:57} INFO - Started process 5921 to run task
+[2024-01-18T23:55:22.124+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'bitcoin_data_batch_processing', 'submit_spark_job', 'manual__2024-01-18T23:55:19.492642+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/BatchLayer_dag.py', '--cfg-path', '/tmp/tmp0mdcswoz']
+[2024-01-18T23:55:22.126+0000] {standard_task_runner.py:85} INFO - Job 43: Subtask submit_spark_job
+[2024-01-18T23:55:22.186+0000] {task_command.py:415} INFO - Running <TaskInstance: bitcoin_data_batch_processing.submit_spark_job manual__2024-01-18T23:55:19.492642+00:00 [running]> on host 36e53310e6a3
+[2024-01-18T23:55:22.284+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='bitcoin_data_batch_processing' AIRFLOW_CTX_TASK_ID='submit_spark_job' AIRFLOW_CTX_EXECUTION_DATE='2024-01-18T23:55:19.492642+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-18T23:55:19.492642+00:00'
+[2024-01-18T23:55:22.297+0000] {base.py:73} INFO - Using connection ID 'spark_default' for task execution.
+[2024-01-18T23:55:22.298+0000] {spark_submit.py:401} INFO - Spark-Submit cmd: spark-submit --master spark://172.29.0.5:7077 --packages com.datastax.spark:spark-cassandra-connector_2.12:3.4.1, org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1 --name arrow-spark --queue root.default --deploy-mode client /opt/***/dags/spark_batch.py
+[2024-01-18T23:55:22.437+0000] {spark_submit.py:571} INFO - /home/***/.local/lib/python3.9/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2024-01-18T23:55:24.379+0000] {spark_submit.py:571} INFO - :: loading settings :: url = jar:file:/home/***/.local/lib/python3.9/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+[2024-01-18T23:55:24.508+0000] {spark_submit.py:571} INFO - Ivy Default Cache set to: /home/***/.ivy2/cache
+[2024-01-18T23:55:24.509+0000] {spark_submit.py:571} INFO - The jars for the packages stored in: /home/***/.ivy2/jars
+[2024-01-18T23:55:24.514+0000] {spark_submit.py:571} INFO - com.datastax.spark#spark-cassandra-connector_2.12 added as a dependency
+[2024-01-18T23:55:24.514+0000] {spark_submit.py:571} INFO - org.apache.spark#spark-sql-kafka-0-10_2.12 added as a dependency
+[2024-01-18T23:55:24.516+0000] {spark_submit.py:571} INFO - :: resolving dependencies :: org.apache.spark#spark-submit-parent-a19ab4da-1c58-49a5-8dd7-ed74a1fd1270;1.0
+[2024-01-18T23:55:24.516+0000] {spark_submit.py:571} INFO - confs: [default]
+[2024-01-18T23:55:25.333+0000] {spark_submit.py:571} INFO - found com.datastax.spark#spark-cassandra-connector_2.12;3.4.1 in central
+[2024-01-18T23:55:25.409+0000] {spark_submit.py:571} INFO - found com.datastax.spark#spark-cassandra-connector-driver_2.12;3.4.1 in central
+[2024-01-18T23:55:25.483+0000] {spark_submit.py:571} INFO - found org.scala-lang.modules#scala-collection-compat_2.12;2.11.0 in central
+[2024-01-18T23:55:28.329+0000] {spark_submit.py:571} INFO - found com.datastax.oss#java-driver-core-shaded;4.13.0 in central
+[2024-01-18T23:55:28.411+0000] {spark_submit.py:571} INFO - found com.datastax.oss#native-protocol;1.5.0 in central
+[2024-01-18T23:55:28.469+0000] {spark_submit.py:571} INFO - found com.datastax.oss#java-driver-shaded-guava;25.1-jre-graal-sub-1 in central
+[2024-01-18T23:55:28.546+0000] {spark_submit.py:571} INFO - found com.typesafe#config;1.4.1 in central
+[2024-01-18T23:55:29.478+0000] {spark_submit.py:571} INFO - found org.slf4j#slf4j-api;1.7.26 in central
+[2024-01-18T23:55:30.364+0000] {spark_submit.py:571} INFO - found io.dropwizard.metrics#metrics-core;4.1.18 in central
+[2024-01-18T23:55:30.428+0000] {spark_submit.py:571} INFO - found org.hdrhistogram#HdrHistogram;2.1.12 in central
+[2024-01-18T23:55:30.483+0000] {spark_submit.py:571} INFO - found org.reactivestreams#reactive-streams;1.0.3 in central
+[2024-01-18T23:55:31.400+0000] {spark_submit.py:571} INFO - found com.github.stephenc.jcip#jcip-annotations;1.0-1 in central
+[2024-01-18T23:55:31.461+0000] {spark_submit.py:571} INFO - found com.github.spotbugs#spotbugs-annotations;3.1.12 in central
+[2024-01-18T23:55:31.657+0000] {spark_submit.py:571} INFO - found com.google.code.findbugs#jsr305;3.0.2 in central
+[2024-01-18T23:55:31.741+0000] {spark_submit.py:571} INFO - found com.datastax.oss#java-driver-mapper-runtime;4.13.0 in central
+[2024-01-18T23:55:31.797+0000] {spark_submit.py:571} INFO - found com.datastax.oss#java-driver-query-builder;4.13.0 in central
+[2024-01-18T23:55:33.579+0000] {spark_submit.py:571} INFO - found org.apache.commons#commons-lang3;3.10 in central
+[2024-01-18T23:55:34.851+0000] {spark_submit.py:571} INFO - found com.thoughtworks.paranamer#paranamer;2.8 in central
+[2024-01-18T23:55:34.906+0000] {spark_submit.py:571} INFO - found org.scala-lang#scala-reflect;2.12.11 in central
+[2024-01-18T23:55:36.611+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/datastax/spark/spark-cassandra-connector_2.12/3.4.1/spark-cassandra-connector_2.12-3.4.1.jar ...
+[2024-01-18T23:55:37.119+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.datastax.spark#spark-cassandra-connector_2.12;3.4.1!spark-cassandra-connector_2.12.jar (537ms)
+[2024-01-18T23:55:37.147+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/datastax/spark/spark-cassandra-connector-driver_2.12/3.4.1/spark-cassandra-connector-driver_2.12-3.4.1.jar ...
+[2024-01-18T23:55:37.460+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.datastax.spark#spark-cassandra-connector-driver_2.12;3.4.1!spark-cassandra-connector-driver_2.12.jar (341ms)
+[2024-01-18T23:55:37.486+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-compat_2.12/2.11.0/scala-collection-compat_2.12-2.11.0.jar ...
+[2024-01-18T23:55:37.590+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] org.scala-lang.modules#scala-collection-compat_2.12;2.11.0!scala-collection-compat_2.12.jar (129ms)
+[2024-01-18T23:55:37.612+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/datastax/oss/java-driver-core-shaded/4.13.0/java-driver-core-shaded-4.13.0.jar ...
+[2024-01-18T23:55:40.473+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.datastax.oss#java-driver-core-shaded;4.13.0!java-driver-core-shaded.jar (2882ms)
+[2024-01-18T23:55:40.494+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/datastax/oss/java-driver-mapper-runtime/4.13.0/java-driver-mapper-runtime-4.13.0.jar ...
+[2024-01-18T23:55:40.531+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.datastax.oss#java-driver-mapper-runtime;4.13.0!java-driver-mapper-runtime.jar(bundle) (57ms)
+[2024-01-18T23:55:40.553+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.10/commons-lang3-3.10.jar ...
+[2024-01-18T23:55:40.819+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] org.apache.commons#commons-lang3;3.10!commons-lang3.jar (288ms)
+[2024-01-18T23:55:40.926+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.jar ...
+[2024-01-18T23:55:40.955+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.thoughtworks.paranamer#paranamer;2.8!paranamer.jar(bundle) (134ms)
+[2024-01-18T23:55:41.001+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.11/scala-reflect-2.12.11.jar ...
+[2024-01-18T23:55:42.322+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] org.scala-lang#scala-reflect;2.12.11!scala-reflect.jar (1367ms)
+[2024-01-18T23:55:42.344+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/datastax/oss/native-protocol/1.5.0/native-protocol-1.5.0.jar ...
+[2024-01-18T23:55:42.454+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.datastax.oss#native-protocol;1.5.0!native-protocol.jar(bundle) (131ms)
+[2024-01-18T23:55:42.485+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/datastax/oss/java-driver-shaded-guava/25.1-jre-graal-sub-1/java-driver-shaded-guava-25.1-jre-graal-sub-1.jar ...
+[2024-01-18T23:55:43.348+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.datastax.oss#java-driver-shaded-guava;25.1-jre-graal-sub-1!java-driver-shaded-guava.jar (893ms)
+[2024-01-18T23:55:43.374+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/typesafe/config/1.4.1/config-1.4.1.jar ...
+[2024-01-18T23:55:43.500+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.typesafe#config;1.4.1!config.jar(bundle) (152ms)
+[2024-01-18T23:55:43.521+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.26/slf4j-api-1.7.26.jar ...
+[2024-01-18T23:55:43.553+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] org.slf4j#slf4j-api;1.7.26!slf4j-api.jar (53ms)
+[2024-01-18T23:55:43.577+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/io/dropwizard/metrics/metrics-core/4.1.18/metrics-core-4.1.18.jar ...
+[2024-01-18T23:55:43.635+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] io.dropwizard.metrics#metrics-core;4.1.18!metrics-core.jar(bundle) (81ms)
+[2024-01-18T23:55:43.659+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/org/hdrhistogram/HdrHistogram/2.1.12/HdrHistogram-2.1.12.jar ...
+[2024-01-18T23:55:43.737+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] org.hdrhistogram#HdrHistogram;2.1.12!HdrHistogram.jar(bundle) (101ms)
+[2024-01-18T23:55:43.758+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar ...
+[2024-01-18T23:55:43.825+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] org.reactivestreams#reactive-streams;1.0.3!reactive-streams.jar (88ms)
+[2024-01-18T23:55:43.846+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/github/stephenc/jcip/jcip-annotations/1.0-1/jcip-annotations-1.0-1.jar ...
+[2024-01-18T23:55:43.879+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.github.stephenc.jcip#jcip-annotations;1.0-1!jcip-annotations.jar (52ms)
+[2024-01-18T23:55:43.900+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/github/spotbugs/spotbugs-annotations/3.1.12/spotbugs-annotations-3.1.12.jar ...
+[2024-01-18T23:55:43.924+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.github.spotbugs#spotbugs-annotations;3.1.12!spotbugs-annotations.jar (45ms)
+[2024-01-18T23:55:43.946+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar ...
+[2024-01-18T23:55:43.979+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.google.code.findbugs#jsr305;3.0.2!jsr305.jar (54ms)
+[2024-01-18T23:55:44.007+0000] {spark_submit.py:571} INFO - downloading https://repo1.maven.org/maven2/com/datastax/oss/java-driver-query-builder/4.13.0/java-driver-query-builder-4.13.0.jar ...
+[2024-01-18T23:55:44.115+0000] {spark_submit.py:571} INFO - [SUCCESSFUL ] com.datastax.oss#java-driver-query-builder;4.13.0!java-driver-query-builder.jar(bundle) (135ms)
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - :: resolution report :: resolve 12065ms :: artifacts dl 7535ms
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - :: modules in use:
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - com.datastax.oss#java-driver-core-shaded;4.13.0 from central in [default]
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - com.datastax.oss#java-driver-mapper-runtime;4.13.0 from central in [default]
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - com.datastax.oss#java-driver-query-builder;4.13.0 from central in [default]
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - com.datastax.oss#java-driver-shaded-guava;25.1-jre-graal-sub-1 from central in [default]
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - com.datastax.oss#native-protocol;1.5.0 from central in [default]
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - com.datastax.spark#spark-cassandra-connector-driver_2.12;3.4.1 from central in [default]
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - com.datastax.spark#spark-cassandra-connector_2.12;3.4.1 from central in [default]
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - com.github.spotbugs#spotbugs-annotations;3.1.12 from central in [default]
+[2024-01-18T23:55:44.116+0000] {spark_submit.py:571} INFO - com.github.stephenc.jcip#jcip-annotations;1.0-1 from central in [default]
+[2024-01-18T23:55:44.117+0000] {spark_submit.py:571} INFO - com.google.code.findbugs#jsr305;3.0.2 from central in [default]
+[2024-01-18T23:55:44.117+0000] {spark_submit.py:571} INFO - com.thoughtworks.paranamer#paranamer;2.8 from central in [default]
+[2024-01-18T23:55:44.117+0000] {spark_submit.py:571} INFO - com.typesafe#config;1.4.1 from central in [default]
+[2024-01-18T23:55:44.117+0000] {spark_submit.py:571} INFO - io.dropwizard.metrics#metrics-core;4.1.18 from central in [default]
+[2024-01-18T23:55:44.117+0000] {spark_submit.py:571} INFO - org.apache.commons#commons-lang3;3.10 from central in [default]
+[2024-01-18T23:55:44.117+0000] {spark_submit.py:571} INFO - org.hdrhistogram#HdrHistogram;2.1.12 from central in [default]
+[2024-01-18T23:55:44.117+0000] {spark_submit.py:571} INFO - org.reactivestreams#reactive-streams;1.0.3 from central in [default]
+[2024-01-18T23:55:44.117+0000] {spark_submit.py:571} INFO - org.scala-lang#scala-reflect;2.12.11 from central in [default]
+[2024-01-18T23:55:44.117+0000] {spark_submit.py:571} INFO - org.scala-lang.modules#scala-collection-compat_2.12;2.11.0 from central in [default]
+[2024-01-18T23:55:44.117+0000] {spark_submit.py:571} INFO - org.slf4j#slf4j-api;1.7.26 from central in [default]
+[2024-01-18T23:55:44.118+0000] {spark_submit.py:571} INFO - ---------------------------------------------------------------------
+[2024-01-18T23:55:44.118+0000] {spark_submit.py:571} INFO - |                  |            modules            ||   artifacts   |
+[2024-01-18T23:55:44.118+0000] {spark_submit.py:571} INFO - |       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+[2024-01-18T23:55:44.118+0000] {spark_submit.py:571} INFO - ---------------------------------------------------------------------
+[2024-01-18T23:55:44.118+0000] {spark_submit.py:571} INFO - |      default     |   20  |   19  |   19  |   0   ||   19  |   19  |
+[2024-01-18T23:55:44.118+0000] {spark_submit.py:571} INFO - ---------------------------------------------------------------------
+[2024-01-18T23:55:44.122+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.122+0000] {spark_submit.py:571} INFO - :: problems summary ::
+[2024-01-18T23:55:44.123+0000] {spark_submit.py:571} INFO - :::: WARNINGS
+[2024-01-18T23:55:44.123+0000] {spark_submit.py:571} INFO - module not found:  org.apache.spark#spark-sql-kafka-0-10_2.12;3.4.1
+[2024-01-18T23:55:44.123+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.123+0000] {spark_submit.py:571} INFO - ==== local-m2-cache: tried
+[2024-01-18T23:55:44.123+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.123+0000] {spark_submit.py:571} INFO - file:/home/***/.m2/repository/ org/apache/spark/spark-sql-kafka-0-10_2.12/3.4.1/spark-sql-kafka-0-10_2.12-3.4.1.pom
+[2024-01-18T23:55:44.123+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.124+0000] {spark_submit.py:571} INFO - -- artifact  org.apache.spark#spark-sql-kafka-0-10_2.12;3.4.1!spark-sql-kafka-0-10_2.12.jar:
+[2024-01-18T23:55:44.124+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.124+0000] {spark_submit.py:571} INFO - file:/home/***/.m2/repository/ org/apache/spark/spark-sql-kafka-0-10_2.12/3.4.1/spark-sql-kafka-0-10_2.12-3.4.1.jar
+[2024-01-18T23:55:44.124+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.124+0000] {spark_submit.py:571} INFO - ==== local-ivy-cache: tried
+[2024-01-18T23:55:44.124+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.124+0000] {spark_submit.py:571} INFO - /home/***/.ivy2/local/ org.apache.spark/spark-sql-kafka-0-10_2.12/3.4.1/ivys/ivy.xml
+[2024-01-18T23:55:44.125+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.125+0000] {spark_submit.py:571} INFO - -- artifact  org.apache.spark#spark-sql-kafka-0-10_2.12;3.4.1!spark-sql-kafka-0-10_2.12.jar:
+[2024-01-18T23:55:44.125+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.125+0000] {spark_submit.py:571} INFO - /home/***/.ivy2/local/ org.apache.spark/spark-sql-kafka-0-10_2.12/3.4.1/jars/spark-sql-kafka-0-10_2.12.jar
+[2024-01-18T23:55:44.125+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.125+0000] {spark_submit.py:571} INFO - ==== central: tried
+[2024-01-18T23:55:44.125+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.125+0000] {spark_submit.py:571} INFO - https://repo1.maven.org/maven2/ org/apache/spark/spark-sql-kafka-0-10_2.12/3.4.1/spark-sql-kafka-0-10_2.12-3.4.1.pom
+[2024-01-18T23:55:44.125+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.126+0000] {spark_submit.py:571} INFO - -- artifact  org.apache.spark#spark-sql-kafka-0-10_2.12;3.4.1!spark-sql-kafka-0-10_2.12.jar:
+[2024-01-18T23:55:44.126+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.126+0000] {spark_submit.py:571} INFO - https://repo1.maven.org/maven2/ org/apache/spark/spark-sql-kafka-0-10_2.12/3.4.1/spark-sql-kafka-0-10_2.12-3.4.1.jar
+[2024-01-18T23:55:44.126+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.126+0000] {spark_submit.py:571} INFO - ==== spark-packages: tried
+[2024-01-18T23:55:44.126+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.126+0000] {spark_submit.py:571} INFO - https://repos.spark-packages.org/ org/apache/spark/spark-sql-kafka-0-10_2.12/3.4.1/spark-sql-kafka-0-10_2.12-3.4.1.pom
+[2024-01-18T23:55:44.126+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.126+0000] {spark_submit.py:571} INFO - -- artifact  org.apache.spark#spark-sql-kafka-0-10_2.12;3.4.1!spark-sql-kafka-0-10_2.12.jar:
+[2024-01-18T23:55:44.126+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - https://repos.spark-packages.org/ org/apache/spark/spark-sql-kafka-0-10_2.12/3.4.1/spark-sql-kafka-0-10_2.12-3.4.1.jar
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - ::::::::::::::::::::::::::::::::::::::::::::::
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - ::          UNRESOLVED DEPENDENCIES         ::
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - ::::::::::::::::::::::::::::::::::::::::::::::
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - ::  org.apache.spark#spark-sql-kafka-0-10_2.12;3.4.1: not found
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - ::::::::::::::::::::::::::::::::::::::::::::::
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.127+0000] {spark_submit.py:571} INFO - 
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - :: USE VERBOSE OR DEBUG MESSAGE LEVEL FOR MORE DETAILS
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - Exception in thread "main" java.lang.RuntimeException: [unresolved dependency:  org.apache.spark#spark-sql-kafka-0-10_2.12;3.4.1: not found]
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmitUtils$.resolveMavenCoordinates(SparkSubmit.scala:1537)
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - at org.apache.spark.util.DependencyUtils$.resolveMavenDependencies(DependencyUtils.scala:185)
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.prepareSubmitEnvironment(SparkSubmit.scala:334)
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:964)
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:194)
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:217)
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:91)
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1120)
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1129)
+[2024-01-18T23:55:44.128+0000] {spark_submit.py:571} INFO - at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2024-01-18T23:55:44.156+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 174, in execute
+    self._hook.submit(self._application)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 502, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master spark://172.29.0.5:7077 --packages com.datastax.spark:spark-cassandra-connector_2.12:3.4.1, org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1 --name arrow-spark --queue root.default --deploy-mode client /opt/***/dags/spark_batch.py. Error code is: 1.
+[2024-01-18T23:55:44.160+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=bitcoin_data_batch_processing, task_id=submit_spark_job, execution_date=20240118T235519, start_date=20240118T235522, end_date=20240118T235544
+[2024-01-18T23:55:44.176+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 43 for task submit_spark_job (Cannot execute: spark-submit --master spark://172.29.0.5:7077 --packages com.datastax.spark:spark-cassandra-connector_2.12:3.4.1, org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1 --name arrow-spark --queue root.default --deploy-mode client /opt/***/dags/spark_batch.py. Error code is: 1.; 5921)
+[2024-01-18T23:55:44.211+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-01-18T23:55:44.233+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

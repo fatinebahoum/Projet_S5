@@ -28,7 +28,7 @@ def create_spark_connection():
             .appName('SparkDataStreaming') \
             .config('spark.jars.packages', "com.datastax.spark:spark-cassandra-connector_2.12:3.4.1,"
                                            "org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1") \
-            .config('spark.cassandra.connection.host', 'localhost') \
+            .config('spark.cassandra.connection.host', 'cassandra') \
             .getOrCreate()
 
         
@@ -64,7 +64,7 @@ def batch_processing():
     spark_conn = create_spark_connection()
 
     # Connexion à Cassandra
-    cluster = Cluster(['localhost'])
+    cluster = Cluster(['cassandra'])
     session = cluster.connect()
 
     create_keyspace(session)
@@ -72,18 +72,23 @@ def batch_processing():
 
     if(spark_conn):
         # Charger les données historiques depuis Cassandra
+        print("Charger les données historiques depuis Cassandra")
         historical_data = load_data_from_cassandra(spark_conn, "spark_streams", "historical_data")
+        print("historical_data : ",historical_data)
         if not historical_data.isEmpty():
 
             # Trier les données par last_updated
+            print("Trier les données par last_updated")
             historical_data = historical_data.sort(col("date"))
 
             # Utiliser une fenêtre pour obtenir les 15 dernières lignes
+            print("Utiliser une fenêtre pour obtenir les 15 dernières lignes")
             window_spec = Window.orderBy(col("date").desc())
             last_15_rows = historical_data.withColumn("row_number", row_number().over(window_spec)).filter(col("row_number") <= 15)
 
 
             # Sélectionner uniquement la colonne "price"
+            print("Sélectionner uniquement la colonne price")
             last_15_prices = last_15_rows.select("price").collect()
 
             last_15_prices.reverse()
@@ -91,11 +96,14 @@ def batch_processing():
             print(last_15_prices)
 
             # Convertir les données en un tableau NumPy
+            print("Convertir les données en un tableau NumPy")
             prices_array = [float(row.price) for row in last_15_prices]
             print(prices_array)
             
             # Charger le model LSTM
-            model_path = './complete_model.h5'
+            model_path = '/opt/airflow/plugins/complete_model.h5'
+            print("model_path : ",model_path)
+
             if(model_path):
                 loaded_model = load_model(model_path)
 

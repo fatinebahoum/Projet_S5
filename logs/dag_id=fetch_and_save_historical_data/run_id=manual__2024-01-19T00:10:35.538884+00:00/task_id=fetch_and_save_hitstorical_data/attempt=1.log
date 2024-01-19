@@ -1,0 +1,64 @@
+[2024-01-19T00:10:37.895+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: fetch_and_save_historical_data.fetch_and_save_hitstorical_data manual__2024-01-19T00:10:35.538884+00:00 [queued]>
+[2024-01-19T00:10:37.903+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: fetch_and_save_historical_data.fetch_and_save_hitstorical_data manual__2024-01-19T00:10:35.538884+00:00 [queued]>
+[2024-01-19T00:10:37.903+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-01-19T00:10:37.919+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): fetch_and_save_hitstorical_data> on 2024-01-19 00:10:35.538884+00:00
+[2024-01-19T00:10:37.921+0000] {standard_task_runner.py:57} INFO - Started process 6835 to run task
+[2024-01-19T00:10:37.925+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'fetch_and_save_historical_data', 'fetch_and_save_hitstorical_data', 'manual__2024-01-19T00:10:35.538884+00:00', '--job-id', '50', '--raw', '--subdir', 'DAGS_FOLDER/fetch_close_price.py', '--cfg-path', '/tmp/tmpkxd5f2gn']
+[2024-01-19T00:10:37.927+0000] {standard_task_runner.py:85} INFO - Job 50: Subtask fetch_and_save_hitstorical_data
+[2024-01-19T00:10:37.992+0000] {task_command.py:415} INFO - Running <TaskInstance: fetch_and_save_historical_data.fetch_and_save_hitstorical_data manual__2024-01-19T00:10:35.538884+00:00 [running]> on host 36e53310e6a3
+[2024-01-19T00:10:38.089+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='fatine' AIRFLOW_CTX_DAG_ID='fetch_and_save_historical_data' AIRFLOW_CTX_TASK_ID='fetch_and_save_hitstorical_data' AIRFLOW_CTX_EXECUTION_DATE='2024-01-19T00:10:35.538884+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-19T00:10:35.538884+00:00'
+[2024-01-19T00:10:38.653+0000] {fetch_close_price.py:74} WARNING - Cluster.__init__ called with contact_points specified, but no load_balancing_policy. In the next major version, this will raise an error; please specify a load-balancing policy. (contact_points = ['cassandra'], lbp = None)
+[2024-01-19T00:10:38.658+0000] {fetch_close_price.py:75} WARNING - Downgrading core protocol version from 66 to 65 for 172.29.0.3:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version
+[2024-01-19T00:10:38.659+0000] {fetch_close_price.py:75} WARNING - Downgrading core protocol version from 65 to 5 for 172.29.0.3:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version
+[2024-01-19T00:10:38.672+0000] {policies.py:289} INFO - Using datacenter 'datacenter1' for DCAwareRoundRobinPolicy (via host '172.29.0.3:9042'); if incorrect, please specify a local_dc to the constructor, or limit contact points to local cluster nodes
+[2024-01-19T00:10:38.707+0000] {logging_mixin.py:151} INFO - Keyspace created successfully!
+[2024-01-19T00:10:38.712+0000] {logging_mixin.py:151} INFO - Table created successfully!
+[2024-01-19T00:10:39.377+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:11:39.994+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:12:41.077+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:47:18.921+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:48:19.269+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:49:19.751+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:50:20.224+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:51:20.681+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:52:21.022+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:53:21.657+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:54:22.120+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:55:22.542+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:56:22.961+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:57:23.311+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:58:26.624+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T00:59:27.319+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:00:28.021+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:01:28.419+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:02:28.785+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:03:29.214+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:04:29.835+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:05:30.445+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:06:30.884+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:07:31.297+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:08:31.667+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:09:32.316+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:10:32.993+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:11:33.409+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:12:33.849+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:13:34.516+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:14:35.141+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:15:35.584+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:16:36.000+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T01:17:36.382+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T02:22:14.222+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T02:46:56.266+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T03:11:29.837+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T03:12:30.433+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T03:13:31.254+0000] {fetch_close_price.py:94} INFO - Inserted historical data into Cassandra
+[2024-01-19T03:14:27.220+0000] {local_task_job_runner.py:115} ERROR - Received SIGTERM. Terminating subprocesses
+[2024-01-19T03:14:27.515+0000] {process_utils.py:131} INFO - Sending 15 to group 6835. PIDs of all processes in the group: [6835]
+[2024-01-19T03:14:27.540+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 6835
+[2024-01-19T03:14:27.586+0000] {taskinstance.py:1632} ERROR - Received SIGTERM. Terminating subprocesses.
+[2024-01-19T03:14:27.608+0000] {fetch_close_price.py:101} ERROR - An error occured: Task received SIGTERM signal
+[2024-01-19T03:14:28.018+0000] {fetch_close_price.py:97} ERROR - Error inserting data into Cassandra: ('Unable to complete the operation against any hosts', {<Host: 172.29.0.3:9042 datacenter1>: ConnectionShutdown('Connection to 172.29.0.3:9042 was closed')})
+[2024-01-19T03:14:27.935+0000] {thread.py:58} WARNING - Host 172.29.0.3:9042 has been marked down
+[2024-01-19T03:14:29.107+0000] {thread.py:58} WARNING - Error attempting to reconnect to 172.29.0.3:9042, scheduling retry in 1.9 seconds: [Errno 111] Tried connecting to [('172.29.0.3', 9042)]. Last error: Connection refused
+[2024-01-19T03:14:31.082+0000] {thread.py:58} WARNING - Error attempting to reconnect to 172.29.0.3:9042, scheduling retry in 4.28 seconds: [Errno 111] Tried connecting to [('172.29.0.3', 9042)]. Last error: Connection refused
+[2024-01-19T03:14:35.400+0000] {thread.py:58} WARNING - Error attempting to reconnect to 172.29.0.3:9042, scheduling retry in 9.04 seconds: [Errno 111] Tried connecting to [('172.29.0.3', 9042)]. Last error: Connection refused

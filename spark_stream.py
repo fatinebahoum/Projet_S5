@@ -19,6 +19,7 @@ def create_table(session):
     CREATE TABLE IF NOT EXISTS spark_streams.bitcoin_data (
         id UUID PRIMARY KEY,
         name TEXT,
+        price TEXT,
         symbol TEXT,
         max_supply TEXT,
         circulating_supply TEXT,
@@ -41,6 +42,7 @@ def insert_data(session, **kwargs):
     bitcoin_id = kwargs.get('id')
     if(bitcoin_id):
         name = kwargs.get('name')
+        price = kwargs.get('price')
         symbol = kwargs.get('symbol')
         max_supply = kwargs.get('max_supply')
         circulating_supply = kwargs.get('circulating_supply')
@@ -51,14 +53,16 @@ def insert_data(session, **kwargs):
         market_cap = kwargs.get('market_cap')
         volume_24h = kwargs.get('volume_24h')
         last_updated = kwargs.get('last_updated')
-    else: print("aaaaaaaaaaaaaaaaaaaaa")
+
+        price = str(price)
+    else: print("inserting data problem")
 
     try:
         session.execute("""
-            INSERT INTO spark_streams.bitcoin_data(id, name, symbol, max_supply, circulating_supply, 
+            INSERT INTO spark_streams.bitcoin_data(id, name, price, symbol, max_supply, circulating_supply, 
                 total_supply, percent_change_1h, percent_change_24h, percent_change_7d, market_cap, volume_24h, last_updated)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """, (bitcoin_id, name, symbol, max_supply, circulating_supply, 
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (bitcoin_id, name, price, symbol, max_supply, circulating_supply, 
                 total_supply, percent_change_1h, percent_change_24h, percent_change_7d, market_cap, volume_24h, last_updated))
         logging.info(f"Data inserted for {name} {last_updated}")
 
@@ -119,6 +123,7 @@ def create_selection_df_from_kafka(spark_df):
     schema = StructType([
         StructField("id", StringType(), False),
         StructField("name", StringType(), False),
+        StructField("price", StringType(), False),
         StructField("symbol", StringType(), False),
         StructField("max_supply", StringType(), False),
         StructField("circulating_supply", StringType(), False),

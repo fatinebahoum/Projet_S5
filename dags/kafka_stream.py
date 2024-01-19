@@ -40,6 +40,7 @@ def format_data(bitcoin_data):
     data['max_supply'] = bitcoin_data['max_supply']
     data['circulating_supply'] = bitcoin_data['circulating_supply']
     data['total_supply'] = bitcoin_data['total_supply']
+    data['price'] = bitcoin_data["quote"]["USD"]["price"]
     data['percent_change_1h'] = bitcoin_data["quote"]["USD"]["percent_change_1h"]
     data['percent_change_24h'] = bitcoin_data["quote"]["USD"]["percent_change_24h"]
     data['percent_change_7d'] = bitcoin_data["quote"]["USD"]["percent_change_7d"]
@@ -61,20 +62,15 @@ def stream_data():
     producer = KafkaProducer(bootstrap_servers=['broker:29092'], max_block_ms=5000)
     curr_time = time.time()
 
-    while True:
-        if time.time() > curr_time + 60:
-            break
-        try:
-            bitcoin_data = get_data(api_key)
-            if bitcoin_data:
-                data = format_data(bitcoin_data)
-                producer.send('bitcoin_data', json.dumps(data).encode('utf-8'))
+    try:
+        bitcoin_data = get_data(api_key)
+        if bitcoin_data:
+            data = format_data(bitcoin_data)
+            producer.send('bitcoin_data', json.dumps(data).encode('utf-8'))
                 #print("Bitcoin Information:")
                 #print(json.dumps(data, indent=3))
-                time.sleep(5)
-        except Exception as e:
-            logging.error(f'An error occured: {e}')
-            continue
+    except Exception as e:
+        logging.error(f'An error occured: {e}')
 
 with DAG('data_automation',
           default_args= default_args,

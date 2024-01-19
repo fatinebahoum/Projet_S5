@@ -71,39 +71,37 @@ def fetch_and_save_data():
     
 
     # Connexion à Cassandra
-    cluster = Cluster(['localhost'])
+    cluster = Cluster(['cassandra'])
     session = cluster.connect()
 
     create_keyspace(session)
     create_table(session)
 
-    while True:
-        try:
-            historical_data = get_data(api_key)
-            if historical_data:
-                data = format_data(historical_data)
-                data['price']=str(data['price'])
-                
-               # Insertion des données dans Cassandra
-                try:
-                    session.execute("""
-                        INSERT INTO spark_streams.historical_data(name, price, date)
-                        VALUES (%s, %s, %s)
-                    """, (data['name'], data['price'], data['date']))
+    try:
+        historical_data = get_data(api_key)
+        if historical_data:
+            data = format_data(historical_data)
+            data['price']=str(data['price'])
+            
+            # Insertion des données dans Cassandra
+            try:
+                session.execute("""
+                    INSERT INTO spark_streams.historical_data(name, price, date)
+                    VALUES (%s, %s, %s)
+                """, (data['name'], data['price'], data['date']))
 
-                    logging.info(f"Inserted historical data into Cassandra: {json.dumps(data)}")
+                logging.info(f"Inserted historical data into Cassandra")
 
-                except Exception as cassandra_error:
-                    logging.error(f'Error inserting data into Cassandra: {cassandra_error}')
-                
-                time.sleep(60)
-        except Exception as e:
-            logging.error(f'An error occured: {e}')
-            continue
+            except Exception as cassandra_error:
+                logging.error(f'Error inserting data into Cassandra: {cassandra_error}')
+            
+    except Exception as e:
+        logging.error(f'An error occured: {e}')
+
 
 dag = DAG('fetch_and_save_historical_data',
           default_args=default_args,
-          schedule_interval=timedelta(minutes=1),
+          schedule_interval='57 23 * * *',
           catchup=False)
 
 fetch_and_save_task = PythonOperator(
